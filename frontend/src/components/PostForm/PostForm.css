@@ -1,0 +1,60 @@
+.form{
+    /* border: 1px solid red; */
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.form-input{
+    border: 1px solid #ff6200;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.form-input:focus{
+    border: 1px solid #ab4200;
+    outline: none;
+}
+
+.form-textarea{
+    flex-grow: 1;
+    border: 1px solid #ff6200;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.form-textarea:focus{
+    border: 1px solid #ab4200;
+    outline: none;
+}
+
+.btn-add-post{
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    background:
+        linear-gradient(#fff,#fff),
+        linear-gradient(#fff,#fff),
+        #ff6200;
+    background-position: center;
+    background-size: 50% 2px,2px 50%;     
+    background-repeat: no-repeat;
+    transition: 0.3s;
+}
+
+.btn-add-post:hover{
+    background:
+        linear-gradient(#fff,#fff),
+        linear-gradient(#fff,#fff),
+        #ab4200;
+    background-position: center;
+    background-size: 50% 2px,2px 50%;     
+    background-repeat: no-repeat;    
+}
