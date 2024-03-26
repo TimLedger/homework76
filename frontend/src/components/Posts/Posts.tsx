@@ -1,5 +1,6 @@
 import React from 'react';
 import {Post} from '../../types';
+import {Card, CardContent, Typography} from "@mui/material";
 import './PostItem.css';
 
 interface Props {
@@ -10,11 +11,19 @@ const Posts: React.FC<Props> = ({posts}) => {
   return (
     <div className='post-list'>
       {posts.map((post) => (
-        <div className="post-item" key={post.id}>
-          <h5 className="post-author">{post.author}</h5>
-          <p className="post-message">{post.message}</p>
-          <span className="post-datetime">{post.datetime}</span>
-        </div>
+        <Card key={post.id}>
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              {post.author}
+            </Typography>
+            <Typography variant="h6" color="textSecondary" className="small">
+              {post.message}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" className="small">
+              {post.datetime}
+            </Typography>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );

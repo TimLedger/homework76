@@ -5,6 +5,7 @@ import Posts from './components/Posts/Posts';
 import {Post} from './types';
 import axiosApi from "./axiosApi";
 import dayjs from 'dayjs';
+import { Container } from "@mui/material";
 import './App.css';
 
 let datetime: string | null = null;
@@ -68,9 +69,11 @@ function App() {
   return (
     <div>
       <Header />
-      <main className="container">
-        <PostForm onSubmit={createPost}/>
-        <Posts posts={posts}/>
+      <main>
+        <Container sx={{mt: 10}}>
+          <PostForm onSubmit={createPost}/>
+          <Posts posts={posts}/>
+        </Container>
       </main>
     </div>
   );

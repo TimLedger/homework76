@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {Post, BodyPost} from '../../types';
+import {Button, TextField} from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import './PostForm.css';
 
 interface Props {
@@ -33,25 +35,28 @@ const PostForm: React.FC<Props> = ({onSubmit}) => {
 
   return (
     <form onSubmit={onFormSubmit} className='form'>
-      <input
+      <TextField
           name="author"
           type="text"
-          className="form-input"
+          variant="outlined"
           value={post.author}
           onChange={changePost}
-          placeholder='Автор'
+          label="Автор"
           required
       />
-      <input
+      <TextField
           name="message"
           type="text"
-          className="form-textarea"
+          variant="outlined"
           value={post.message}
           onChange={changePost}
-          placeholder='Сообщение...'
+          label="Сообщение"
           required
+          fullWidth
       />
-      <button type="submit" className="btn-add-post"></button>
+      <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+        Отправить
+      </Button>
     </form>
   );
 };

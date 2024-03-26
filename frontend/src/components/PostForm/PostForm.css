@@ -34,19 +34,7 @@
 }
 
 .btn-add-post{
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    padding: 0;
-    background:
-        linear-gradient(#fff,#fff),
-        linear-gradient(#fff,#fff),
-        #ff6200;
-    background-position: center;
-    background-size: 50% 2px,2px 50%;     
-    background-repeat: no-repeat;
-    transition: 0.3s;
+    padding: 0 15px;
 }
 
 .btn-add-post:hover{
