@@ -4,11 +4,8 @@ export interface Post {
     datetime: string;
 }
 
-export interface BodyPost {
-    author: string;
-    message: string;
-}
-
 export interface PostApi extends Post {
     id: string;
 }
+
+export type BodyPost = Omit<PostApi, 'id', 'datetime'>;

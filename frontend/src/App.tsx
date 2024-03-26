@@ -32,10 +32,11 @@ function App() {
           datetime: dayjs(post.datetime).format('DD.MM.YYYY HH:mm'),
         }));
 
+        setPosts(newPosts);
+
         if (newPosts.length > 0) {
           const lastPost = newPosts[newPosts.length - 1];
           datetime = lastPost.datetime;
-          setPosts((prevPosts) => [...prevPosts, ...newPosts]);
         }
       } catch (error) {
         console.error('Error fetching posts:', error);

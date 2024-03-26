@@ -1,5 +1,4 @@
 import fs from 'fs/promises';
-import dayjs from 'dayjs';
 import crypto from 'crypto';
 import {PostApi, BodyPost} from "./types";
 
@@ -16,16 +15,11 @@ const fileDb = {
         }
     },
     async getItems() {
-        return data.map((post) => ({
-            ...post,
-            datetime: dayjs(post.datetime).format('DD.MM.YYYY HH:mm'),
-        }));
+        return data
     },
     async addItem(item: BodyPost) {
         const id = crypto.randomUUID();
-        const datetime = new Date().toISOString();
-
-        const post = {id, datetime, ...item};
+        const post = {id, ...item};
         data.push(post);
         await this.save();
 
