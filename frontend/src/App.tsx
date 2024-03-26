@@ -3,9 +3,10 @@ import Header from './components/Header/Header';
 import PostForm from './components/PostForm/PostForm';
 import Posts from './components/Posts/Posts';
 import {Post} from './types';
+import axiosApi from "./axiosApi";
+import dayjs from 'dayjs';
 import './App.css';
 
-let BASE_URL = 'http://146.185.154.90:8000/messages';
 let datetime: string | null = null;
 
 function App() {
@@ -13,20 +14,23 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let url = BASE_URL;
+      let url = '/messages';
 
       if (datetime !== null) {
-        url += '?datetime=' + datetime;
+        url += `?datetime=${encodeURIComponent(datetime)}`;
       }
 
       try {
-        const response = await fetch(url);
+        const response = await axiosApi.get(url);
 
-        if (!response.ok) {
+        if (response.status !== 200) {
           throw new Error('Network error: ' + response.status);
         }
 
-        const newPosts: Post[] = await response.json();
+        const newPosts: Post[] = response.data.map((post: Post) => ({
+          ...post,
+          datetime: dayjs(post.datetime).format('DD.MM.YYYY HH:mm'),
+        }));
 
         if (newPosts.length > 0) {
           const lastPost = newPosts[newPosts.length - 1];
@@ -46,19 +50,11 @@ function App() {
   }, []);
 
   const createPost = async (post: Post) => {
-    const data = new URLSearchParams();
-    data.set('id', post.id);
-    data.set('author', post.author);
-    data.set('message', post.message);
-    data.set('datetime', post.datetime);
 
     try {
-      const response = await fetch(BASE_URL, {
-        method: 'POST',
-        body: data,
-      });
+      const response = await axiosApi.post('/messages', post);
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log('Post created successfully!');
       } else {
         console.error('Failed to create post');

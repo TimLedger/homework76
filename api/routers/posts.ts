@@ -13,7 +13,7 @@ postsRouter.post('/', async (req, res) => {
     const post: Post = {
         author: req.body.author,
         message: req.body.message,
-        datetime: req.body.datetime,
+        datetime: (new Date()).toISOString(),
     }
 
     if (!post.author || !post.message) {
